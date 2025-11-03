@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercitiul 4</title>
+</head>
+<body>
+    <h2>Exercițiul 4</h2>
+    <script>
+        let a = 13;
+        let b = 17;
+        let c = 13;
+        let d = 17;
+
+        if ((a === c && b === d) || (a === b && c === d) || (a === d && b === c)) {
+            let perimetru = a + b + c + d;
+            let aria = (a === c) ? a * b : a * c;
+            console.log(`Cele 4 numere pot reprezenta laturi ale unui dreptunghi! Perimetrul este: ${perimetru}. Aria este: ${aria}.`);
+        } else {
+            console.log("Cele 4 numere nu pot reprezenta laturi ale unui dreptunghi!");
+        }
+    </script>
+</body>
+</html>
