@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Meniul Restaurantului nostru" />
+    <title>Meniu - Restaurantul nostru</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        nav a:hover {
+            background-color: #575757;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .menu-item h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Meniul Restaurantului nostru</h1>
+    </header>
+
+    <!-- Meniu de navigare -->
+    <nav>
+        <a href="index.html">Acasă</a>
+        <a href="meniu.html">Meniu</a>
+        <a href="despre-noi.html">Despre noi</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2>Descoperă Meniul nostru</h2>
+        <div class="menu-item">
+            <h3>Ciorbă de burtă</h3>
+            <span>40 RON</span>
+            <a href="ciorba-de-burta.html">Vezi rețeta</a>
+        </div>
+        <div class="menu-item">
+            <h3>Sarmale cu mămăligă</h3>
+            <span>45 RON</span>
+            <a href="sarmale-cu-mamaliga.html">Vezi rețeta</a>
+        </div>
+        <div class="menu-item">
+            <h3>Papanasi cu smântână și dulceață</h3>
+            <span>25 RON</span>
+            <a href="papanasi.html">Vezi rețeta</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Restaurantul nostru. Toate drepturile rezervate.</p>
+    </footer>
+
+</body>
+</html>

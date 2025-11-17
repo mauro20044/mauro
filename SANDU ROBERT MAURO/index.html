@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina de start</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Bun venit pe site-ul nostru!</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Acasă</a></li>
+        <li><a href="#produse">Produse</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Secțiunea Produse -->
+    <section id="produse">
+      <h2>Produsele noastre</h2>
+      <div class="produse-container">
+        <div class="produs-card">
+          <img src="imagini/produs1.jpg" alt="Produs 1">
+          <h3>Produs 1</h3>
+          <p>Descriere scurtă a produsului 1.</p>
+        </div>
+
+        <div class="produs-card">
+          <img src="imagini/produs2.jpg" alt="Produs 2">
+          <h3>Produs 2</h3>
+          <p>Descriere scurtă a produsului 2.</p>
+        </div>
+
+        <div class="produs-card">
+          <img src="imagini/produs3.jpg" alt="Produs 3">
+          <h3>Produs 3</h3>
+          <p>Descriere scurtă a produsului 3.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Buton „Mergi sus” -->
+  <button id="topBtn" title="Mergi sus">⬆️</button>
+
+  <footer>
+    <p>&copy; 2025 Site-ul meu</p>
+  </footer>
+
+  <script>
+    // Buton "Mergi sus"
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        topBtn.style.display = "block";
+      } else {
+        topBtn.style.display = "none";
+      }
+    };
+    topBtn.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+  </script>
+</body>
+</html>
