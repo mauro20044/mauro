@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Meniul Restaurantului nostru" />
     <title>Meniu - Restaurantul nostru</title>
+    <script src="cart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,21 +19,34 @@
             text-align: center;
             padding: 20px;
         }
-        header h1 {
-            margin: 0;
-        }
+        header h1 { margin: 0; }
         nav {
             background-color: #444;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
         nav a {
             color: white;
             padding: 14px 20px;
             text-decoration: none;
             display: inline-block;
+            position: relative;
         }
         nav a:hover {
             background-color: #575757;
+        }
+        #cart-count {
+            background: red;
+            color: white;
+            font-size: 12px;
+            border-radius: 50%;
+            padding: 2px 6px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
         }
         .container {
             max-width: 1200px;
@@ -51,17 +65,66 @@
             width: 100%;
             bottom: 0;
         }
+        .menu-section {
+            margin-bottom: 30px;
+        }
+        .menu-section h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
         .menu-item {
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .menu-item h3 {
-            margin: 0;
+        .menu-item h3 { margin: 0; }
+        .menu-item span { font-weight: bold; }
+        .menu-item a.details {
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .menu-item a.details:hover {
+            text-decoration: underline;
+        }
+        .menu-item button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .menu-item button:hover {
+            background-color: #218838;
+        }
+        /* 🔼 Buton "Mergi sus" */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.3s;
+            display: none;
+            z-index: 999;
+        }
+        .back-to-top:hover {
+            background-color: #555;
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
+<body id="top">
 
     <header>
         <h1>Meniul Restaurantului nostru</h1>
@@ -73,30 +136,145 @@
         <a href="meniu.html">Meniu</a>
         <a href="despre-noi.html">Despre noi</a>
         <a href="contact.html">Contact</a>
+        <a href="cos.html">🛒 Coș <span id="cart-count">0</span></a>
     </nav>
 
     <div class="container">
-        <h2>Descoperă Meniul nostru</h2>
-        <div class="menu-item">
-            <h3>Ciorbă de burtă</h3>
-            <span>40 RON</span>
-            <a href="ciorba-de-burta.html">Vezi rețeta</a>
+
+        <div class="menu-section">
+            <h2>🍽️ Aperitive</h2>
+            <div class="menu-item">
+                <h3>Platou țărănesc</h3><span>55 RON</span>
+                <div>
+                    <button onclick="addToCart('Platou țărănesc', 55)">Adaugă în coș</button>
+                    <a href="platou-taranesc.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Salată de vinete cu ceapă</h3><span>25 RON</span>
+                <div>
+                    <button onclick="addToCart('Salată de vinete cu ceapă', 25)">Adaugă în coș</button>
+                    <a href="salata-de-vinete.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Bruschete cu roșii și busuioc</h3><span>28 RON</span>
+                <div>
+                    <button onclick="addToCart('Bruschete cu roșii și busuioc', 28)">Adaugă în coș</button>
+                    <a href="bruschete.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
         </div>
-        <div class="menu-item">
-            <h3>Sarmale cu mămăligă</h3>
-            <span>45 RON</span>
-            <a href="sarmale-cu-mamaliga.html">Vezi rețeta</a>
+
+        <div class="menu-section">
+            <h2>🥘 Feluri principale</h2>
+            <div class="menu-item">
+                <h3>Ciorbă de burtă</h3><span>40 RON</span>
+                <div>
+                    <button onclick="addToCart('Ciorbă de burtă', 40)">Adaugă în coș</button>
+                    <a href="ciorba-de-burta.html" class="details">Vezi rețeta</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Sarmale cu mămăligă</h3><span>45 RON</span>
+                <div>
+                    <button onclick="addToCart('Sarmale cu mămăligă', 45)">Adaugă în coș</button>
+                    <a href="sarmale-cu-mamaliga.html" class="details">Vezi rețeta</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Tochitură moldovenească</h3><span>50 RON</span>
+                <div>
+                    <button onclick="addToCart('Tochitură moldovenească', 50)">Adaugă în coș</button>
+                    <a href="tochitura.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Pește la grătar cu mujdei și mămăligă</h3><span>55 RON</span>
+                <div>
+                    <button onclick="addToCart('Pește la grătar cu mujdei și mămăligă', 55)">Adaugă în coș</button>
+                    <a href="peste-la-gratar.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Mămăliguță cu brânză și smântână</h3><span>30 RON</span>
+                <div>
+                    <button onclick="addToCart('Mămăliguță cu brânză și smântână', 30)">Adaugă în coș</button>
+                    <a href="mamaliguta-cu-branza.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
         </div>
-        <div class="menu-item">
-            <h3>Papanasi cu smântână și dulceață</h3>
-            <span>25 RON</span>
-            <a href="papanasi.html">Vezi rețeta</a>
+
+        <div class="menu-section">
+            <h2>🍰 Deserturi</h2>
+            <div class="menu-item">
+                <h3>Papanași cu smântână și dulceață</h3><span>25 RON</span>
+                <div>
+                    <button onclick="addToCart('Papanași cu smântână și dulceață', 25)">Adaugă în coș</button>
+                    <a href="papanasi.html" class="details">Vezi rețeta</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Clătite cu ciocolată și banane</h3><span>22 RON</span>
+                <div>
+                    <button onclick="addToCart('Clătite cu ciocolată și banane', 22)">Adaugă în coș</button>
+                    <a href="clatite.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Tiramisu de casă</h3><span>26 RON</span>
+                <div>
+                    <button onclick="addToCart('Tiramisu de casă', 26)">Adaugă în coș</button>
+                    <a href="tiramisu.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>🍷 Băuturi</h2>
+            <div class="menu-item">
+                <h3>Vin roșu de casă (pahar)</h3><span>18 RON</span>
+                <div>
+                    <button onclick="addToCart('Vin roșu de casă (pahar)', 18)">Adaugă în coș</button>
+                    <a href="vin.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Limonadă cu mentă</h3><span>15 RON</span>
+                <div>
+                    <button onclick="addToCart('Limonadă cu mentă', 15)">Adaugă în coș</button>
+                    <a href="limonada.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <h3>Cafea espresso</h3><span>12 RON</span>
+                <div>
+                    <button onclick="addToCart('Cafea espresso', 12)">Adaugă în coș</button>
+                    <a href="cafea.html" class="details">Vezi detalii</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Restaurantul nostru. Toate drepturile rezervate.</p>
     </footer>
+
+    <!-- 🔼 Buton "Mergi sus" -->
+    <a href="#top" class="back-to-top" id="backToTop">⬆️ Mergi sus</a>
+
+    <script>
+        // Afișează butonul doar când se derulează în jos
+        const backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+
+        backToTop.addEventListener("click", function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 
 </body>
 </html>

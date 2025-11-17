@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coș de cumpărături</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="cart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fafafa; padding: 20px; }
+    h1 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #f0f0f0; }
+    button { padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+    .actions { text-align: center; margin-top: 20px; }
+    .buy-btn { background: #3b5998; color: white; border: none; }
+    .clear-btn { background: #999; color: white; border: none; }
+  </style>
+</head>
+<body onload="loadCart()">
+  <h1>🛒 Coșul tău</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Produs</th>
+        <th>Preț</th>
+        <th>Cantitate</th>
+        <th>Total</th>
+        <th>Șterge</th>
+      </tr>
+    </thead>
+    <tbody id="cart-items"></tbody>
+  </table>
+
+  <h2 style="text-align:center;">Total: <span id="total">0.00</span> lei</h2>
+
+  <div class="actions">
+    <button class="buy-btn" onclick="alert('Comanda ta a fost trimisă!'); clearCart();">Cumpără acum</button>
+    <button class="clear-btn" onclick="clearCart()">Golește coșul</button>
+  </div>
+
+  <p style="text-align:center; margin-top:20px;">
+    <a href="meniu.html">← Înapoi la meniu</a>
+  </p>
+</body>
+</html>

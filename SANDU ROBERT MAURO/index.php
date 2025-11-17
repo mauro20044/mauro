@@ -36,7 +36,7 @@ session_start();
         nav h1 {
             margin: 0;
         }
-        .nav-links a, #toggleTheme {
+        .nav-links a {
             margin: 0 10px;
         }
         .user-info {
@@ -48,21 +48,9 @@ session_start();
             color: white;
             border-radius: 6px;
             text-decoration: none;
-            border: none;
-            cursor: pointer;
         }
         .btn:hover {
             background-color: #555;
-        }
-
-        /* Tema întunecată adaugată cu DOM */
-        .dark-mode {
-            background-color: #1d1d1d;
-            color: #f1f1f1;
-        }
-        .dark-mode header,
-        .dark-mode footer {
-            background-color: #111;
         }
     </style>
 </head>
@@ -78,9 +66,6 @@ session_start();
                 <a href="meniu.html">Meniu</a>
                 <a href="despre-noi.html">Despre noi</a>
                 <a href="contact.html">Contact</a>
-
-                <!-- Buton DOM adăugat -->
-                <button id="toggleTheme" class="btn">Tema întunecată</button>
 
                 <?php if (isset($_SESSION['utilizator'])): ?>
                     <span class="user-info">👋 Bun venit, <strong><?= htmlspecialchars($_SESSION['utilizator']); ?></strong></span>
@@ -161,7 +146,6 @@ session_start();
     <a href="#top" class="back-to-top" id="backToTop">⬆️ Mergi sus</a>
 
     <script>
-        // Buton "Mergi sus"
         const backToTop = document.getElementById("backToTop");
         window.addEventListener("scroll", () => {
             backToTop.style.display = window.scrollY > 300 ? "block" : "none";
@@ -169,20 +153,6 @@ session_start();
         backToTop.addEventListener("click", function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        // 🔥 DOM: Schimbare temă
-        const toggleTheme = document.getElementById("toggleTheme");
-
-        toggleTheme.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-
-            // update text
-            if (document.body.classList.contains("dark-mode")) {
-                toggleTheme.textContent = "Tema luminoasă";
-            } else {
-                toggleTheme.textContent = "Tema întunecată";
-            }
         });
     </script>
 </body>

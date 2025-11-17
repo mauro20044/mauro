@@ -87,6 +87,25 @@
     <footer>
         <p>&copy; 2025 Restaurantul nostru. Toate drepturile rezervate.</p>
     </footer>
+    <!-- 🔼 Buton "Mergi sus" -->
+    <a href="#top" class="back-to-top" id="backToTop">⬆️ Mergi sus</a>
 
+    <script>
+        // Afișează butonul doar când se derulează în jos
+        const backToTop = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+
+        // Scroll lin la începutul paginii
+        backToTop.addEventListener("click", function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 </body>
 </html>
